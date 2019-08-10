@@ -1,0 +1,35 @@
+{% extends 'site_base.html' %}
+
+{% block html_head %}
+{{ block.super }}
+{% block html_head_maillist_extra %}
+{% endblock %}
+{% endblock html_head %}
+
+
+{% block head_title %}{{ block.super }} - {% block head_subtitle %}Mailing lists{% endblock %}{% endblock %}
+{% block page_content_header %}{% block title %}Mailing lists{% endblock %}{% endblock %}
+
+
+{% block page_content_body %}
+    <section>
+        {% block maillist_content %}
+            <p>
+                MyApp Content.
+            </p>
+        {% endblock %}
+    </section>
+    {% block maillist_extra_content %}
+    {% endblock %}
+{% endblock page_content_body %}
+
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% block app_breadcrumbs %}
+        <span class="divider">&gt;</span>
+        {% include './includes/app_breadcrumbs.html' %}
+        {% block page_breadcrumbs %}
+        {% endblock %}
+    {% endblock app_breadcrumbs %}
+{% endblock %}

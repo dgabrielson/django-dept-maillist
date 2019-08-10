@@ -1,0 +1,8 @@
+include requirements.txt
+include LICENSE.txt
+#recursive-include maillist/static *
+recursive-include maillist/templates *
+
+# added by check_manifest.py
+recursive-include maillist *.js
+recursive-include maillist *.svg

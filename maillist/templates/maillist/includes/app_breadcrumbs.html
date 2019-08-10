@@ -1,0 +1,8 @@
+{% url 'maillist-list' as app_top_url %}
+{% if app_top_url %}
+    {% if app_top_url != request.path %}
+        <a href="{{ app_top_url }}">Mailing lists</a>
+    {% else %}
+        Mailing lists
+    {% endif %}
+{% endif %}

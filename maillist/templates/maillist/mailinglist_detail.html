@@ -1,0 +1,63 @@
+{% extends 'maillist/mailinglist_list.html' %}
+{% load static %}
+
+{# ########################################### #}
+
+{% block html_head_maillist_extra %}
+    <script src="{% static 'maillist/js/clipboard.min.js' %}"></script>
+{% endblock %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Mailing list - {{ object }} program{% endblock %}
+{% block title %}{{ object }} mailing list{% endblock %}
+
+{# ########################################### #}
+
+{% block maillist_content %}
+    <p>
+        The membership of the mailing list is shown below.
+    </p>
+    <p id="maillist-emails" style="font-family: monospace">
+        {% for member in object.member_set.active %}
+            {{ member.email }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p>
+        <div style="float: left;  overflow: hidden">
+            <button class="btn" data-clipboard-target="#maillist-emails" style="text-align:center;">
+                <img src="{% static 'maillist/img/clippy.svg' %}" alt="Copy to clipboard" style="padding:0;margin-top:0.25em;width:1.75em;height:1.75em;">
+            </button>
+        </div>
+        <div style="padding-left: 1em; overflow: hidden;">
+            Use the button to copy the list so that you can paste
+            into the BCC field of your mail client.
+        </div>
+    </p>
+{% endblock %}
+
+{# ########################################### #}
+
+{% block maillist_extra_content %}
+    <script>
+        new Clipboard('.btn');
+    </script>
+{% endblock %}
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    {% with url=object.get_absolute_url %}
+        {% if url != request.path %}
+            <a href="{{ url }}">
+                {{ object }}
+            </a>
+        {% else %}
+            {{ object }}
+        {% endif %}
+    {% endwith %}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}

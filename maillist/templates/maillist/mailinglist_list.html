@@ -1,0 +1,27 @@
+{% extends 'maillist/base.html' %}
+
+{# ########################################### #}
+
+{% block head_subtitle %}Mailing lists{% endblock %}
+{% block title %}Mailing lists{% endblock %}
+
+{# ########################################### #}
+
+{% block maillist_content %}
+    <ul>
+        {% for object in object_list %}
+            <li>
+                <a href="{{ object.get_absolute_url }}">
+                    {{ object }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{# ########################################### #}
+
+{% block maillist_extra_content %}
+{% endblock %}
+
+{# ########################################### #}
